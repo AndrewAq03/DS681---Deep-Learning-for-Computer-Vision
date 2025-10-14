@@ -55,7 +55,20 @@ def insert_embeddings():
             """, (category, image_name, emb_list, False))
         conn.commit()
     print("Inserted all embeddings.")
-
+    
+def insert_fake_anomalies(n=5):
+    cur.execute("SELECT embedding, category FROM patchcore_embeddings LIMIT %s;", (n,))
+    rows = cur.fetchall()
+    for i, (emb, cat) in enumerate(rows):
+        image_name = f"{cat}_anomaly_{i}"
+        cur.execute("""
+            INSERT INTO patchcore_embeddings (category, image_name, embedding, is_anomalous)
+            VALUES (%s, %s, %s::vector, %s)
+            ON CONFLICT (image_name) DO NOTHING;
+        """, (cat, image_name, emb, True))
+    conn.commit()
+    print(f"Inserted {n} fake anomalies.")
+    
 def insert_anomalies(n=5):
     cur.execute("SELECT embedding, category FROM patchcore_embeddings LIMIT %s;", (n,))
     rows = cur.fetchall()
@@ -103,8 +116,8 @@ def find_similar_or_anomaly():
         print(f"{img:<25} | {cat:<10} | {'Anom' if anom else 'Norm'} | Sim={sim:.4f}")
 
 
-
-insert_anomalies()  # Create a few anomalies
+#insert_fake_anomalies()
+insert_anomalies() 
 find_similar_or_anomaly()
 cur.close()
 conn.close()
