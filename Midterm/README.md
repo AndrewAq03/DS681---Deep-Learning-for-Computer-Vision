@@ -1,7 +1,7 @@
 # Hello this is my submission for the Midterm
 
 ## Training Files Folder:
-  1. The notebook that contains the script doing camera calibration on the training images that was give.
+  1. The notebook that contains the script doing camera calibration on the training images that was given here https://huggingface.co/datasets/pantelism/wide-camera-calibration
   2. An image of the output at 3000 epochs with the Distortion Coefficients, calibrated Camera Matrix and RMS Error
   3. A similiar image but at 10000 epochs when I was doing some hyperparameter tuning
 
