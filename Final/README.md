@@ -6,7 +6,7 @@ In this assignment you will extend an existing Proximal Policy Optimization (PPO
 
 Hello, for this task I ran the code in google colab as my hardware isnt great. The issue I ran into is that I ran out of GPU computing units so I had to use the CPU and cut the runs short. 
 
-# Files Uploaded
+## Files Uploaded
 * PPO Code
 * Outputs from TensorBoard for PPO
 * GRPO Code
